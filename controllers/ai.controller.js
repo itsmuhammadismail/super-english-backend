@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const translator = require("../functions/translator.js");
 const changeTone = require("../functions/change_tone.js");
+const reply = require("../functions/reply.js");
 
 // @desc    Tranlate to another language
 // @route   POST /api/ai/translate
@@ -26,7 +27,20 @@ const changeToneController = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc   Change the tone of email
+// @route   POST /api/ai/reply
+// @access  Private
+const replyController = asyncHandler(async (req, res) => {
+  const { text } = req.body;
+  let repliedText = await reply({ text });
+  res.status(200).json({
+    status: true,
+    text: repliedText,
+  });
+});
+
 module.exports = {
   tranlateController,
   changeToneController,
+  replyController,
 };

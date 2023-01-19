@@ -1,5 +1,5 @@
 const express = require("express");
-var cors = require("cors");
+const cors = require("cors");
 const dotenv = require("dotenv");
 const errorHandler = require("./middlewares/error.middleware.js");
 const aiRouter = require("./routes/ai.route.js");
